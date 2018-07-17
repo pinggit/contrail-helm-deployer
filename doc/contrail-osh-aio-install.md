@@ -1,3 +1,19 @@
+
+- [All-in-one openstack-helm with contrail cluster (NON-HA)](#all-in-one-openstack-helm-with-contrail-cluster--non-ha-)
+  * [Tested with](#tested-with)
+  * [Resource spec (used for internal validation)](#resource-spec--used-for-internal-validation-)
+  * [Pre-req packages](#pre-req-packages)
+  * [Installation steps](#installation-steps)
+  * [Git clone the necessary repo's using below command](#git-clone-the-necessary-repo-s-using-below-command)
+  * [Export variables needed by below procedure](#export-variables-needed-by-below-procedure)
+  * [change `external_dns_nameservers` in `vars.yaml`](#change--external-dns-nameservers--in--varsyaml-)
+  * [Installing necessary packages and deploying kubernetes](#installing-necessary-packages-and-deploying-kubernetes)
+  * [Install openstack and heat client](#install-openstack-and-heat-client)
+  * [Deploy openstack-helm related charts](#deploy-openstack-helm-related-charts)
+  * [deploy opencontrail charts](#deploy-opencontrail-charts)
+  * [Deploy heat charts](#deploy-heat-charts)
+  * [all commands](#all-commands)
+
 # All-in-one openstack-helm with contrail cluster (NON-HA)
 
 Using below step you can bring an all-in-one cluster with openstack and contrail
