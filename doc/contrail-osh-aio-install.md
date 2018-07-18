@@ -1,4 +1,3 @@
-
 - [All-in-one openstack-helm with contrail cluster (NON-HA)](#all-in-one-openstack-helm-with-contrail-cluster--non-ha-)
   * [Tested with](#tested-with)
   * [Resource spec (used for internal validation)](#resource-spec--used-for-internal-validation-)
@@ -187,7 +186,7 @@ nodes:
    ```
 
    ```
-   tee ~/contrail.yaml << EOF
+   tee /tmp/contrail.yaml << EOF
    global:
      contrail_env:
        CONTROLLER_NODES: 172.17.0.1
@@ -236,8 +235,9 @@ nodes:
 
    ```bash
    helm install --name contrail ${CHD_PATH}/contrail \
-   --namespace=contrail --values=~/contrail.yaml \
+   --namespace=contrail --values="/tmp/contrail.yaml" \
    ${CONTRAIL_REGISTRY_ARG}
+   cp /tmp/contrail.yaml ~/
    ```
 
 ## Deploy heat charts
@@ -247,8 +247,9 @@ nodes:
    ./tools/deployment/developer/nfs/091-heat-opencontrail.sh
    ```
 
+## appendix
 
-## all commands
+### all commands being used
 
 ```bash
 git clone https://github.com/Juniper/openstack-helm.git
@@ -290,7 +291,7 @@ export CONTRAIL_REGISTRY="opencontrailnightly"
 export CONTRAIL_TAG="5.0-latest"
 kubectl replace -f ${CHD_PATH}/rbac/cluster-admin.yaml
 
-tee ~/contrail.yaml << EOF
+tee /tmp/contrail.yaml << EOF
 global:
   contrail_env:
     CONTROLLER_NODES: 172.17.0.1
@@ -334,10 +335,14 @@ global:
       dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
 EOF
 
+cp /tmp/contrail.yaml ~/
 helm install --name contrail ${CHD_PATH}/contrail \
---namespace=contrail --values=~/contrail.yaml \
+--namespace=contrail --values=/tmp/contrail.yaml \
 
 cd ${OSH_PATH}
 ./tools/deployment/developer/nfs/091-heat-opencontrail.sh
 ```
 
+### installation logs
+
+https://gist.github.com/pinggit/2498c59fa0be4d892ee333dc286e7346
